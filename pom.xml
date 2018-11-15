@@ -2,9 +2,10 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>info.margreiter.getdown</groupId>
   <artifactId>getdown-maven-plugin</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.2-SNAPSHOT</version>
   <name>Getdown Maven Plugin</name>
-     <url>https://github.com/thomasX/getdown-maven-plugin</url>
+  <url>https://github.com/thomasX/getdown-maven-plugin</url>
+  <packaging>maven-plugin</packaging>
     <properties>
         <maven.test.failure.ignore>true</maven.test.failure.ignore>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -16,7 +17,7 @@
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-plugin-api</artifactId>
-            <version>3.2.3</version>
+            <version>3.3.9</version>
         </dependency>
  		<dependency>
 			<groupId>org.apache.maven.plugin-tools</groupId>
@@ -54,12 +55,13 @@
     </scm>
 
     <description>A maven build plugin for generating getdown digest files. (digest1 and digest2)</description>
-
+<!-- 
     <parent>
         <groupId>org.sonatype.oss</groupId>
         <artifactId>oss-parent</artifactId>
         <version>7</version>
     </parent>
+ -->
 
     <developers>
         <developer>
@@ -74,13 +76,35 @@
 
     <build>
         <plugins>
+        
+			<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-plugin-plugin</artifactId>
+                <version>3.2</version>
+                <configuration>
+                    <!-- see http://jira.codehaus.org/browse/MNG-5346 -->
+                    <skipErrorNoDescriptorsFound>true</skipErrorNoDescriptorsFound>
+                </configuration>
+
+                <executions>
+                    <execution>
+                        <id>mojo-descriptor</id>
+                        <goals>
+                            <goal>descriptor</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        
+        
+        
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.2</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>1.7</source>
+                    <target>1.7</target>
                 </configuration>
             </plugin>
 

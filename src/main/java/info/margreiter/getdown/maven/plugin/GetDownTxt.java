@@ -14,8 +14,8 @@ import org.apache.maven.plugins.annotations.Parameter;
  * created: 14.11.2018
  * @author f3thomas
  */
-@Mojo (name="makegetdowntxt")
-public class MakeGetDownTxt extends AbstractMojo{
+@Mojo (name="getdowntxt")
+public class GetDownTxt extends AbstractMojo{
 
 	 @Parameter (defaultValue="target")
 	 private String appdir;
@@ -69,6 +69,14 @@ public class MakeGetDownTxt extends AbstractMojo{
 		writer.println(",..... jarfiles");
 	}
 
+	private void makeDirectoryIfNecessary( File dir ) throws MojoExecutionException {
+        if ( !dir.exists() && !dir.mkdirs() ) {
+            throw new MojoExecutionException( "Failed to create directory: " + dir );
+        }
+    }
+
+	
+	
 	private void checkRequiredProperites() throws MojoExecutionException{
 		// TODO TEST 14.11.2018
 		if (null==mainclass) throw new MojoExecutionException("'mainclass' missing");
