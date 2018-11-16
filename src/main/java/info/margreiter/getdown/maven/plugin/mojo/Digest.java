@@ -1,4 +1,4 @@
-package info.margreiter.getdown.maven.plugin;
+package info.margreiter.getdown.maven.plugin.mojo;
 
 import java.io.File;
 import java.io.IOException;
