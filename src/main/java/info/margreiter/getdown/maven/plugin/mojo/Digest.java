@@ -26,31 +26,17 @@ public class Digest extends AbstractMojo{
 	 private String keystore;
 	 
 	 @Parameter (defaultValue="null")
-	 private String keystorePass;
+	 private String keystorepass;
 	 
 	 @Parameter (defaultValue="null")
-	 private String keystoreAlias;
-	 
-	 @Parameter (defaultValue="hhhhhh" , required = true)
-	 private String appbase;
-
-	 @Parameter (required = true)
-	 private String ui_name;
+	 private String keyAlias;
 		 
-	 @Parameter (required = true)
-	 private String mainclass;
-		 
-	 @Parameter (required = true)
-	 private String[] jarfiles;
-		 
-		 
-
     public void execute() throws MojoExecutionException {
-    	getLog().debug("#############    used appdir: " + appdir);
-    	getLog().debug("#############    used appbase: " + appbase);
+    	getLog().debug("used appdir: " + appdir);
     	try {
     		File ks=new File(keystore);
-			Digester.createDigests(new File(appdir), ks, keystorePass,keystoreAlias);
+    		getLog().debug("usedKeyStore:" + ks);
+			Digester.createDigests(new File(appdir), ks, keystorepass,keyAlias);
 		} catch (IOException | GeneralSecurityException e) {
 			// TODO Auto-generated catch block
 			throw new MojoExecutionException("Failed to create digest", e);

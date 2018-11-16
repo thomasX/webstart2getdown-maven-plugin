@@ -10,6 +10,8 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 
+import com.threerings.getdown.util.FileUtil;
+
 import info.margreiter.getdown.maven.plugin.uitl.JnlpReader;
 
 
@@ -25,13 +27,7 @@ public class GetDownTxt extends AbstractMojo{
 	  
 	 @Parameter (required = true)
 	 private String appbase;
-
-	 @Parameter (required = true)
-	 private String ui_name;
-		 
-	 @Parameter (required = true)
-	 private String mainclass;
-		  
+	  
 	 @Parameter (required = true)
 	 private String jnlpfile;
 
@@ -68,11 +64,30 @@ public class GetDownTxt extends AbstractMojo{
 				writer.println();
 			}
     		writer.close();
+    		copyJarFiles(jnlpReader);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			throw new MojoExecutionException("Failed to create digest", e);
 		}
     }
+
+	private void copyJarFiles(JnlpReader jnlpReader) throws IOException, MojoExecutionException {
+		// TODO TEST 16.11.2018
+		String srcDir = jnlpReader.getJnlpFile().getParent();
+		getLog().debug("copyRefJarsFromJNLP-File :" + jnlpReader.getJnlpFile());
+		getLog().debug("srcDir:" +srcDir);
+		String destDir = appdir;
+		getLog().debug("destDir:" +destDir);
+		Vector<String> requestedJars = jnlpReader.getRequestedJars();
+		for (String fileName : requestedJars) {
+			File srcFile = new File(srcDir,fileName);
+			File dstFile = new File(destDir,fileName);
+			File dstDir=dstFile.getParentFile();
+			makeDirectoryIfNecessary(dstDir);
+			getLog().debug("srcFile:" +srcFile  +  "  --->  " + "destFile:" + dstFile);
+			FileUtil.copy(srcFile,dstFile);
+		}
+	}
 
 	private void writeApplicationJarFiles(PrintWriter writer, Vector<String> requestedJars) {
 		// TODO TEST 14.11.2018
@@ -90,9 +105,8 @@ public class GetDownTxt extends AbstractMojo{
 	
 	private void checkRequiredProperites() throws MojoExecutionException{
 		// TODO TEST 14.11.2018
-		if (null==mainclass) throw new MojoExecutionException("'mainclass' missing");
+		if (null==jnlpfile) throw new MojoExecutionException("'jnlpfile' missing");
 		if (null==appbase) throw new MojoExecutionException("'appbase' missing");
-		if (null==ui_name) throw new MojoExecutionException("'ui_name' missing");
 		
 	}
 }
