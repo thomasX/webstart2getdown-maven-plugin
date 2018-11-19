@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>info.margreiter.getdown</groupId>
   <artifactId>webstart2getdown-maven-plugin</artifactId>
-  <version>0.0.5-SNAPSHOT</version>
+  <version>1.0.0</version>
   <name>webstart2getdown Maven Plugin</name>
   <url>https://github.com/thomasX/getdown-maven-plugin</url>
   <packaging>maven-plugin</packaging>
@@ -73,6 +73,15 @@
             </roles>
         </developer>
     </developers>
+
+	<distributionManagement>
+        <repository>
+	            <id>internal</id>
+	            <url>file://${project.build.directory}/gh-pages</url>
+        </repository>
+	</distributionManagement>
+
+
 
     <build>
         <plugins>
