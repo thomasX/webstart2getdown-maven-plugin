@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp 
+	spec="1.0+" 
+	codebase="http://thomasx.github.io/webstart2getdown-maven-plugin-example1/jnlp" 
+	href="webstart2getdownExample1.jnlp"
+	packEnabled="false">
+ <information>
+    <title>webstart2getdown-maven-plugin-example1</title>
+    <vendor>clever &amp; smart</vendor>
+    <description>no description available</description> 
+    <description kind="short">clever &amp; smart"</description> 
+    <homepage href="https://github.com/thomasX/webstart2getdown-maven-plugin-example1"/> 
+    <icon kind="default" href="https://thomasx.github.io/webstart2getdown-maven-plugin-example1/jnlp/img/FERPS_256x256_FELDER-Group_2016_4c_3D.png" width="256" height="256"/>
+    <icon kind="shortcut" href="https://thomasx.github.io/webstart2getdown-maven-plugin-example1/jnlp/img/FERPS_ONLY_16x16.gif"  width="16" height="16"/>
+    <offline-notallowed/>
+    <shortcut online="true">
+    	<desktop/>
+		<menu submenu="Clever &amp; Smart"/> 
+    </shortcut>   
+ </information>
+ <security>
+ <all-permissions/>
+ </security>
+ <resources>
+    <j2se version="1.8+" initial-heap-size="512m" max-heap-size="1024m" />
+    <property name="jnlp.versionEnabled" value="false"/>
+    <property name="jnlp.packEnabled" value="false"/>
+        
+    <jar href="lib/webstart2getdown-maven-plugin-example1-0.0.5-SNAPSHOT.jar" main="true"/>
+    <jar href="lib/joda-time-2.3.jar"/>
+
+ </resources>
+ <application-desc main-class="info.margreiter.getdown.maven.plugin.example.example1.MyApp">
+  <!--REPLACE_WITH_ARGUMENTS-->
+ </application-desc>
+</jnlp>

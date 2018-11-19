@@ -1,0 +1,19 @@
+# The URL from which the client is downloaded
+appbase = http://thomasx.github.io/webstart2getdown-maven-plugin-example1/getdown/
+
+# UI Configuration
+ui.name = webstart2getdown-maven-plugin-example1
+
+# Application jar files
+code = lib/webstart2getdown-maven-plugin-example1-0.0.5-SNAPSHOT.jar
+code = lib/joda-time-2.3.jar
+
+# The main entry point for the application
+class = info.margreiter.getdown.maven.plugin.example.example1.MyApp
+
+# Initial Heap Size
+jvmarg = -Xms512m
+
+# Max. Heap Size
+jvmarg = -Xmx1024m
+
