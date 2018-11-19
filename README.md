@@ -1,6 +1,6 @@
-# webstart2wetdown Maven Plugin 
+# webstart2getdown Maven Plugin 
 
-this plugin creates a complete getdown stub based on a webstart(generated with webstart-maven-plugin) ... see the example1 on  
+this plugin creates a complete getdown-stub based on a webstart (generated with webstart-maven-plugin) ... see the example1 on https://github.com/thomasX/webstart2getdown-maven-plugin-example1 
 
 # requested pom properties: 
 
