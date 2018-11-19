@@ -1,9 +1,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>info.margreiter.getdown</groupId>
-  <artifactId>getdown-maven-plugin</artifactId>
-  <version>0.0.4-SNAPSHOT</version>
-  <name>Getdown Maven Plugin</name>
+  <artifactId>webstart2getdown-maven-plugin</artifactId>
+  <version>0.0.5-SNAPSHOT</version>
+  <name>webstart2getdown Maven Plugin</name>
   <url>https://github.com/thomasX/getdown-maven-plugin</url>
   <packaging>maven-plugin</packaging>
     <properties>
@@ -49,12 +49,12 @@
     </licenses>
 
     <scm>
-	    <connection>scm:git:git://github.com/thomasX/getdown-maven-plugin.git</connection>
-	    <developerConnection>scm:git:git@github.com:thomasX/getdown-maven-plugin.git</developerConnection>
+	    <connection>scm:git:git://github.com/thomasX/webstart2getdown-maven-plugin.git</connection>
+	    <developerConnection>scm:git:git@github.com:thomasX/webstart2getdown-maven-plugin.git</developerConnection>
 	    <url>https://github.com/thomasX/getdown-maven-plugin</url>
     </scm>
 
-    <description>A maven build plugin for generating getdown digest files. (digest1 and digest2)</description>
+    <description>A maven build plugin for generating a complete getdown stub based on a webstart-project</description>
 <!-- 
     <parent>
         <groupId>org.sonatype.oss</groupId>
