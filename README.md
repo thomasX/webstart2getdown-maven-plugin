@@ -8,7 +8,7 @@ jnlpfile ... points to the generated jnlpFile (see our example https://github.co
 
 appbase ... see Getdown documentation or have a look at (see our example https://github.com/thomasX/webstart2getdown-maven-plugin-example1 ) 
 
-# option po properties: 
+# optional properties: 
 
 appdir .... default = target    (see our example https://github.com/thomasX/webstart2getdown-maven-plugin-example1 ) 
 
