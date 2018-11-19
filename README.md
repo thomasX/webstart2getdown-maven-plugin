@@ -4,7 +4,7 @@ this plugin creates a complete getdown stub based on a webstart(generated with w
 
 requested pom properties: 
 
-appbase ... (eg: http://mydomain.com/myapp/getdown/)
+appbase ... 
 appdir .... default = target
 
  
