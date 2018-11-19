@@ -26,10 +26,10 @@ public class Digest extends AbstractMojo{
 	 private String keystore;
 	 
 	 @Parameter (defaultValue="null")
-	 private String keystorepass;
+	 private String storepass;
 	 
 	 @Parameter (defaultValue="null")
-	 private String keyalias;
+	 private String alias;
 		 
     public void execute() throws MojoExecutionException {
     	getLog().debug("used appdir: " + appdir);
@@ -37,7 +37,7 @@ public class Digest extends AbstractMojo{
     		if (! ("null".equals(keystore.toString())))  {
     			File ks=new File(keystore);
     			getLog().debug("usedKeyStore:" + ks + "   isexisting: " + ks.exists());
-    			Digester.createDigests(new File(appdir), ks, keystorepass,keyalias);
+    			Digester.createDigests(new File(appdir), ks, storepass, alias);
     		}
     		if (("null".equals(keystore.toString())))  {
     			Digester.createDigests(new File(appdir), null ,null ,null);
