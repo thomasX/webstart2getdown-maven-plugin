@@ -13,13 +13,13 @@
 
 ## [Summary:](#summary)
 
-This plugin is designed to create a complete [GETDOWN]() - project, which includes the **getdown.txt**, **digest.txt** and **digest2.txt**. The **getdown.txt** will be created from a jnlp - File. The [maven-webstart-plugin]() creates the needed jnlp - File. Further this plugin is able to sign your code with a specific **keystore**. However this feature is only optional (see [Features](#features)).
+This plugin is designed to create a complete [GETDOWN](https://github.com/threerings/getdown/) - project, which includes the **getdown.txt**, **digest.txt** and **digest2.txt**. The **getdown.txt** will be created from a jnlp - File. The [maven-webstart-plugin]() creates the needed jnlp - File. Further this plugin is able to sign your code with a specific **keystore**. However this feature is only optional (see [Features](#features)).
 
 ## [Features:](#features)
 
 Feature | Description
 --------|------------
-getdown.txt - generation | The plugin will create your getdown.txt with all the needed infromation by itself. For more information considering the getdown.txt - file visite the [original wiki]()!
+getdown.txt - generation | The plugin will create your getdown.txt with all the needed infromation by itself. For more information considering the getdown.txt - file visite the [original wiki](https://github.com/threerings/getdown/wiki)!
 digest\[2\].txt - generation | The Generation of the digest - files (digest.txt and digest2.txt) will also happen automatically. These digest - files include the hashes of your project files. With these hashes Getdown is able to tell if it has to update or redownload any files.
 signing | Optionally you can provide a keystore, with which the plugin should sign your files. If you don't provide any keystore - files the plugin will not sign anything.
 
