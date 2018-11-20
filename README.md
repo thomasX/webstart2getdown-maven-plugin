@@ -1,9 +1,9 @@
-# _webstart2getdown_ Maven Plugin 
+# :white_check_mark: _webstart2getdown_ Maven Plugin 
 
 ## [Table of Contents:](#table-of-contents)
 
 ### 1. [Summary](#summary)
-### 2. [Intention](#intention)
+### 2. [Features](#features)
 ### 3. [Goals](#goals)
 ### 4. [Configuration](#configuration)
 ### 5. [Usage](#usage)
@@ -114,3 +114,5 @@ This goal will sign your the files, which has been created by the **getdowntxt -
 ## [Example:](#example)
 
 https://github.com/thomasX/webstart2getdown-maven-plugin-example1 
+
+by and [thomasX](https://github.com/thomasX) and [Maz47](https://github.com/maz47)
