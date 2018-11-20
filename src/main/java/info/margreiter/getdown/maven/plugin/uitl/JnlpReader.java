@@ -72,7 +72,7 @@ public class JnlpReader {
 		String searchstring=information;
 		int position=0;
 		while (position > -1) {
-			position=searchstring.indexOf("<icon",position);
+			position=searchstring.indexOf("<icon");
 			if (position>-1) {
 				String arrtibutes=extractValue(searchstring,"<icon" , "/>");
 				String kind = extractXMLAttribute(arrtibutes, "kind");

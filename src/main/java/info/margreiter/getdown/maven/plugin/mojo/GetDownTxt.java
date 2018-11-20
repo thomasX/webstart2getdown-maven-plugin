@@ -31,6 +31,15 @@ public class GetDownTxt extends AbstractMojo{
 	 @Parameter (required = true)
 	 private String jnlpfile;
 	 
+	 @Parameter (defaultValue="")
+	 private String progressbarColor;
+	 
+	 @Parameter (defaultValue="")
+	 private String progressTextColor;
+	 
+	 @Parameter (defaultValue="")
+	 private String bgColor;
+	 
     public void execute() throws MojoExecutionException {
     	// TODO TEST 14.11.2018
     	getLog().debug("used appdir: " + appdir);
@@ -57,6 +66,21 @@ public class GetDownTxt extends AbstractMojo{
 			if (jnlpReader.getIconPath().trim().length()>0) {
 				writer.println("# Icon Image");
 				writer.println("ui.icon = " + jnlpReader.getIconPath());
+				writer.println();
+			}
+			if (progressbarColor.trim().length()>0) {
+				writer.println("# Progressbar Color");
+				writer.println("ui.progress_bar = " + progressbarColor);
+				writer.println();
+			}
+			if (progressTextColor.trim().length()>0) {
+				writer.println("# Progressbar TextColor");
+				writer.println("ui.progress_text = " + progressTextColor);
+				writer.println();
+			}
+			if (bgColor.trim().length()>0) {
+				writer.println("# BackgroundColor  eg: ui.background = 3399AA");
+				writer.println("ui.background = " + bgColor);
 				writer.println();
 			}
 			writer.println("# Application jar files");
