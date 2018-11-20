@@ -2,12 +2,12 @@
 
 ## [Table of Contents:](#table-of-contents)
 
-1. [Summary]()
+1. [Summary](#summary)
 2. Intention
 3. Usage
 4. Configuration
 
-## Summary:
+## [Summary:](#summary)
 
 This plugin creates a complete getdown-stub, based on a webstart, generated with webstart-maven-plugin. 
 
