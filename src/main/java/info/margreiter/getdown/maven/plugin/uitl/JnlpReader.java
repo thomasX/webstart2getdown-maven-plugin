@@ -87,7 +87,7 @@ public class JnlpReader {
 	private void extractIconPath(HashMap<String, String> iconTags) {
 		// TODO TEST 20.11.2018
 		String kind="shortcut";
-		if (iconTags.containsKey(kind)) bgImagePath=iconTags.get(kind);
+		if (iconTags.containsKey(kind)) iconPath=iconTags.get(kind);
 		
 	}
 

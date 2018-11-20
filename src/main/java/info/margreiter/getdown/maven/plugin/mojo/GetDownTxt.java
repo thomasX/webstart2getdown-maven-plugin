@@ -68,17 +68,17 @@ public class GetDownTxt extends AbstractMojo{
 				writer.println("ui.icon = " + jnlpReader.getIconPath());
 				writer.println();
 			}
-			if (progressbarColor.trim().length()>0) {
+			if ((null!=progressbarColor) && (progressbarColor.toString().trim().length()>0)) {
 				writer.println("# Progressbar Color");
 				writer.println("ui.progress_bar = " + progressbarColor);
 				writer.println();
 			}
-			if (progressTextColor.trim().length()>0) {
+			if ((null!=progressTextColor) && (progressTextColor.toString().trim().length()>0)) {
 				writer.println("# Progressbar TextColor");
 				writer.println("ui.progress_text = " + progressTextColor);
 				writer.println();
 			}
-			if (bgColor.trim().length()>0) {
+			if ((null!=bgColor) &&(bgColor.toString().trim().length()>0)) {
 				writer.println("# BackgroundColor  eg: ui.background = 3399AA");
 				writer.println("ui.background = " + bgColor);
 				writer.println();
