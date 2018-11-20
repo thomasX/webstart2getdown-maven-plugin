@@ -2,12 +2,27 @@
 
 ## [Table of Contents:](#table-of-contents)
 
-1. [Summary](#summary)
-2. Intention
-3. Usage
-4. Configuration
+### 1. [Summary](#summary)
+### 2. [Intention](#intention)
+### 3. [Features](#features)
+### 4. [Goals](#goals)
+### 5. [Usage](#usage)
+### 6. [Configuration](#configuration)
+### 7. [Example](#example)
 
 ## [Summary:](#summary)
+
+## [Intention:](#intention)
+
+## [Features:](#features)
+
+## [Goals:](#goals)
+
+## [Usage:](#usage)
+
+## [Configuration:](#configuration)
+
+## [Example:](#example)
 
 This plugin creates a complete getdown-stub, based on a webstart, generated with webstart-maven-plugin. 
 
