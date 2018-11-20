@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.StringTokenizer;
 import java.util.Vector;
 
@@ -20,6 +21,9 @@ public class JnlpReader {
 	private String javaVersion="";
 	private String mainClass="";
 	private String uiName="";
+	private String iconPath="";
+	private String bgImagePath="";
+	
 	
 	public JnlpReader(File jnlpFile) throws IOException {
 		super();
@@ -45,9 +49,48 @@ public class JnlpReader {
         String information = extractXMLvalue(jnlp, "information");
         extractMainClass(jnlp);
         extractUiName(information);
+        HashMap<String, String> iconTags = extractIconTags(information);
+        extractBgImagePath(iconTags);
+        extractIconPath(iconTags);
         
 	}
  
+	private void extractBgImagePath(HashMap<String, String> iconTags) {
+		// TODO TEST 20.11.2018
+		String kind="default";
+		if (iconTags.containsKey(kind)) bgImagePath=iconTags.get(kind);
+	}
+
+	/**
+	 * 
+	 * @param information
+	 * @return Hashmap<kind,path>
+	 */
+	private HashMap<String,String> extractIconTags(String information) {
+		// TODO TEST 20.11.2018
+		HashMap<String, String> result= new HashMap();
+		String searchstring=information;
+		int position=0;
+		while (position > -1) {
+			position=searchstring.indexOf("<icon",position);
+			if (position>-1) {
+				String arrtibutes=extractValue(searchstring,"<icon" , "/>");
+				String kind = extractXMLAttribute(arrtibutes, "kind");
+				String path = extractXMLAttribute(arrtibutes, "href");
+				result.put(kind, path);
+				searchstring=searchstring.substring(position +1);
+			}
+		}
+		return result;
+	}
+
+	private void extractIconPath(HashMap<String, String> iconTags) {
+		// TODO TEST 20.11.2018
+		String kind="shortcut";
+		if (iconTags.containsKey(kind)) bgImagePath=iconTags.get(kind);
+		
+	}
+
 	private void extractUiName(String information) {
 		String result=extractXMLvalue(information,"title");
 		if ((null!=result) && (result.trim().length()>0)) uiName=result;
@@ -133,12 +176,16 @@ public class JnlpReader {
 		return extractValue(xmlString, starttag, stopTag);
 	}
 
-	private String extractValue(String xmlString, String starttag, String stopTag) {
+	private String extractValue(int offset,String xmlString, String starttag, String stopTag) {
 		String result="";
 		int startPoint = xmlString.indexOf(starttag);
-        int endPoint = xmlString.indexOf(stopTag,startPoint+starttag.length());
-        if ((startPoint >-1) &&(endPoint > -1)) result=xmlString.substring(startPoint + starttag.length(), endPoint).trim();
+		int endPoint = xmlString.indexOf(stopTag,startPoint+starttag.length());
+		if ((startPoint >-1) &&(endPoint > -1)) result=xmlString.substring(startPoint + starttag.length(), endPoint).trim();
 		return result;
+	}
+	
+	private String extractValue(String xmlString, String starttag, String stopTag) {
+		return extractValue(0, xmlString, starttag, stopTag);
 	}
 
 	private void extractConfig(String globalResources) {
@@ -181,7 +228,7 @@ public class JnlpReader {
 		return mainClass;
 	}
 
-	public synchronized String getUiName() {
+	public  String getUiName() {
 		// TODO TEST 16.11.2018
 		return uiName;
 	}
@@ -194,6 +241,16 @@ public class JnlpReader {
 				(getMaxHeapSize().trim().length()>0)
 			   );
 		return result;
+	}
+
+	public  String getIconPath() {
+		// TODO TEST 20.11.2018
+		return iconPath;
+	}
+
+	public String getBgImagePath() {
+		// TODO TEST 20.11.2018
+		return bgImagePath;
 	}
 
 }

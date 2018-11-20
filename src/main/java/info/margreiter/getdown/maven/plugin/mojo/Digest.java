@@ -22,24 +22,24 @@ public class Digest extends AbstractMojo{
 	 @Parameter (defaultValue="target")
 	 private String appdir;
 	 
-	 @Parameter (defaultValue="null")
+	 @Parameter (defaultValue="")
 	 private String keystore;
 	 
-	 @Parameter (defaultValue="null")
+	 @Parameter (defaultValue="")
 	 private String storepass;
 	 
-	 @Parameter (defaultValue="null")
+	 @Parameter (defaultValue="")
 	 private String alias;
 		 
     public void execute() throws MojoExecutionException {
     	getLog().debug("used appdir: " + appdir);
     	try {
-    		if (! ("null".equals(keystore.toString())))  {
+    		if ((keystore.toString().trim().length()>0))  {
     			File ks=new File(keystore);
     			getLog().debug("usedKeyStore:" + ks + "   isexisting: " + ks.exists());
     			Digester.createDigests(new File(appdir), ks, storepass, alias);
     		}
-    		if (("null".equals(keystore.toString())))  {
+    		if ((keystore.toString().trim().length()<1))  {
     			Digester.createDigests(new File(appdir), null ,null ,null);
     		}
 		} catch (IOException | GeneralSecurityException e) {

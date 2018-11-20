@@ -30,7 +30,7 @@ public class GetDownTxt extends AbstractMojo{
 	  
 	 @Parameter (required = true)
 	 private String jnlpfile;
-
+	 
     public void execute() throws MojoExecutionException {
     	// TODO TEST 14.11.2018
     	getLog().debug("used appdir: " + appdir);
@@ -49,6 +49,16 @@ public class GetDownTxt extends AbstractMojo{
     		writer.println("# UI Configuration");
     		writer.println("ui.name = "+ jnlpReader.getUiName());
 			writer.println();
+			if (jnlpReader.getBgImagePath().trim().length()>0) {
+				writer.println("# Background Image");
+				writer.println("ui.background_image = " + jnlpReader.getBgImagePath());
+				writer.println();
+			}
+			if (jnlpReader.getIconPath().trim().length()>0) {
+				writer.println("# Icon Image");
+				writer.println("ui.icon = " + jnlpReader.getIconPath());
+				writer.println();
+			}
 			writer.println("# Application jar files");
 			writeApplicationJarFiles(writer, jnlpReader.getRequestedJars());
 			writer.println();
