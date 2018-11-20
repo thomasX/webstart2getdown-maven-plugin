@@ -15,43 +15,49 @@ import com.threerings.getdown.tools.Digester;
  * created: 14.11.2018
  * @author f3thomas
  */
-@Mojo (name="digest")
-public class Digest extends AbstractMojo{
 
+@Mojo(name = "digest")
+public class Digest extends AbstractMojo {
 
-	 @Parameter (defaultValue="target")
-	 private String appdir;
-	 
-	 @Parameter (defaultValue="")
-	 private String keystore;
-	 
-	 @Parameter (defaultValue="")
-	 private String storepass;
-	 
-	 @Parameter (defaultValue="")
-	 private String alias;
-		 
-    public void execute() throws MojoExecutionException {
-    	getLog().debug("used appdir: " + appdir);
-    	try {
-    		if ((keystore.toString().trim().length()>0))  {
-    			File ks=new File(keystore);
-    			getLog().debug("usedKeyStore:" + ks + "   isexisting: " + ks.exists());
-    			Digester.createDigests(new File(appdir), ks, storepass, alias);
-    		}
-    		if ((keystore.toString().trim().length()<1))  {
-    			Digester.createDigests(new File(appdir), null ,null ,null);
-    		}
+	/**
+	 * output directory for getdown - files
+	 */
+	@Parameter(defaultValue = "target")
+	private String appdir;
+
+	/**
+	 * path to the keystore
+	 */
+	@Parameter(defaultValue = "")
+	private String keystore;
+
+	/**
+	 * password for the keystore
+	 */
+	@Parameter(defaultValue = "")
+	private String storepass;
+
+	/**
+	 * alias of the key
+	 */
+	@Parameter(defaultValue = "")
+	private String alias;
+	
+	public void execute() throws MojoExecutionException {
+		// TODO TEST 14.11.2018
+		getLog().debug("creating digest - files ...");
+		getLog().debug("used output directory (appdi): " + appdir);
+		try {
+			if ((keystore.toString().trim().length() > 0)) {
+				File ks = new File(keystore);
+				getLog().debug("used keystore: " + ks + " is existing: " + ks.exists());
+				Digester.createDigests(new File(appdir), ks, storepass, alias);
+			}
+			if ((keystore.toString().trim().length() < 1)) {
+				Digester.createDigests(new File(appdir), null, null, null);
+			}
 		} catch (IOException | GeneralSecurityException e) {
-			// TODO Auto-generated catch block
-			throw new MojoExecutionException("Failed to create digest", e);
+			throw new MojoExecutionException("Failed to create digest! ", e);
 		}
-    }
-    
-    
-    
-    
-    
-    
-    
+	}
 }
