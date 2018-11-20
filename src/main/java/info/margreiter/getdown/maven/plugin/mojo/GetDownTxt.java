@@ -5,8 +5,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Vector;
 
+import org.apache.maven.artifact.Artifact;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.plugin.descriptor.PluginDescriptor;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.codehaus.plexus.util.FileUtils;
@@ -46,6 +48,9 @@ public class GetDownTxt extends AbstractMojo{
 	 
 	 @Parameter (defaultValue="")
 	 private String bgColor;
+	 
+	@Parameter(defaultValue = "${plugin}", readonly = true)
+	protected PluginDescriptor plugin;
 	 
     public void execute() throws MojoExecutionException {
     	// TODO TEST 14.11.2018
@@ -109,6 +114,7 @@ public class GetDownTxt extends AbstractMojo{
     		writer.close();
     		copyJarFiles(jnlpReader);
     		copyImgFiles(jnlpReader);
+    		copyGetdownClient();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			throw new MojoExecutionException("Failed to create digest", e);
@@ -149,7 +155,11 @@ public class GetDownTxt extends AbstractMojo{
 		makeDirectoryIfNecessary(new File(destDir));
 		FileUtils.copyFile(srcFile, destFile);
 	}
-
+	protected void copyGetdownClient() throws MojoExecutionException, IOException {
+		getLog().info("Copying client jar");
+		Artifact getdown = (Artifact) plugin.getArtifactMap().get("com.threerings:getdown");
+		FileUtils.copyFile(getdown.getFile(), new File(appdir, "getdown.jar"));
+	}
 	private void writeApplicationJarFiles(PrintWriter writer, Vector<String> requestedJars) {
 		// TODO TEST 14.11.2018
 		for (String jar : requestedJars) {
