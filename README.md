@@ -1,35 +1,38 @@
-# webstart2getdown Maven Plugin 
+# _webstart2getdown_ Maven Plugin 
 
-this plugin creates a complete getdown-stub based on a webstart (generated with webstart-maven-plugin) ... see the example1 on https://github.com/thomasX/webstart2getdown-maven-plugin-example1 
+## Summary:
 
-# requested pom properties: 
+This plugin creates a complete getdown-stub, based on a webstart, generated with webstart-maven-plugin. 
 
-`jnlpfile` ... points to the generated jnlpFile (see our example https://github.com/thomasX/webstart2getdown-maven-plugin-example1 ) 
+__Example:__
 
-`appbase` ... see Getdown documentation or have a look at (see our example https://github.com/thomasX/webstart2getdown-maven-plugin-example1 ) 
+https://github.com/thomasX/webstart2getdown-maven-plugin-example1 
 
-# optional properties: 
+## How to use the Plugin:
+### Required POM - Properties: 
 
-`appdir` .... default = target    (see our example https://github.com/thomasX/webstart2getdown-maven-plugin-example1 ) 
+* __jnlpfile__ ... points to the generated jnlpFile  
 
-`keystore` .... if you want to sign the digest files enter the path to the your keystorefile (default = null    (see our example https://github.com/thomasX/webstart2getdown-maven-plugin-example1 )  in this example we use a selfsigned demokey ) this demokey shouldn't be used in real production 
-if no keystore is defined signing is deactivated. 
+* __appbase__ ... defines the location of the downloadable sources
 
-`storepass` ... contains the keystorepassword (default = null)
+### Optional POM - Properties: 
 
-`alias` ... contains the key alias (default = null)
+* __appdir__ ... defines the Output-Directory for the generated files _(default = target/)_
 
-`bgImage` ..... contains the path to the backgroundimage  (ui.background_image in getdown documentation )
+* __keystore__ ... defines the location of the keystore, only requested if you want to sign your digest files _(default = null)_ *
 
-`iconImage` ..... contains the path to the iconimage (ui.icon in getdown documentation )
+* __storepass__ ... contains the keystorepassword (default = null)
 
-`progressbarColor` ..... Backgroundcolor (ui.background in getdown documentation)
+* __alias__ ... contains the key alias (default = null)
 
-`progressTextColor`...... Progressbarcolor (ui.progress_bar in getdown documentation)
+* __bgImage__ ... contains the path to the backgroundimage  (ui.background_image in getdown documentation )
 
-`bgColor`...... Progressbartext color (ui.progress_test in getdown documentation)
+* __iconImage__ ... contains the path to the iconimage (ui.icon in getdown documentation )
 
+* __progressbarColor__ ... Backgroundcolor (ui.background in getdown documentation)
 
+* __progressTextColor__ ... Progressbarcolor (ui.progress_bar in getdown documentation)
 
+* __bgColor__ ... Progressbartext color (ui.progress_test in getdown documentation)
 
-
+\*_if you want to sign the digest files enter the path to the your keystorefile (see our example https://github.com/thomasX/webstart2getdown-maven-plugin-example1 in this example we use a selfsigned demokey) this demokey shouldn't be used in real production ... if no keystore is defined signing is deactivated._
