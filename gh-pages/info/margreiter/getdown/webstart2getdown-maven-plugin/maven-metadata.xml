@@ -3,11 +3,10 @@
   <groupId>info.margreiter.getdown</groupId>
   <artifactId>webstart2getdown-maven-plugin</artifactId>
   <versioning>
-    <latest>1.0.0</latest>
-    <release>1.0.0</release>
+    <latest>1.0.1-SNAPSHOT</latest>
     <versions>
-      <version>1.0.0</version>
+      <version>1.0.1-SNAPSHOT</version>
     </versions>
-    <lastUpdated>20181119101657</lastUpdated>
+    <lastUpdated>20181120072828</lastUpdated>
   </versioning>
 </metadata>
