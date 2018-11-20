@@ -35,4 +35,4 @@ https://github.com/thomasX/webstart2getdown-maven-plugin-example1
 
 * __bgColor__ ... Progressbartext color (ui.progress_test in getdown documentation)
 
-\*_if you want to sign the digest files enter the path to the your keystorefile (see our example https://github.com/thomasX/webstart2getdown-maven-plugin-example1 in this example we use a selfsigned demokey) this demokey shouldn't be used in real production ... if no keystore is defined signing is deactivated._
+\*_if you want to sign the digest files enter the path to the your keystorefile (see our [example](##Summary:) in this example we use a selfsigned demokey) this demokey shouldn't be used in real production ... if no keystore is defined signing is deactivated._
