@@ -9,6 +9,7 @@ import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
+import org.codehaus.plexus.util.FileUtils;
 
 import com.threerings.getdown.util.FileUtil;
 
@@ -30,6 +31,12 @@ public class GetDownTxt extends AbstractMojo{
 	  
 	 @Parameter (required = true)
 	 private String jnlpfile;
+	 
+	 @Parameter (defaultValue="")
+	 private String iconImage="";
+	 
+	 @Parameter (defaultValue="")
+	 private String bgImage="";
 	 
 	 @Parameter (defaultValue="")
 	 private String progressbarColor;
@@ -58,14 +65,14 @@ public class GetDownTxt extends AbstractMojo{
     		writer.println("# UI Configuration");
     		writer.println("ui.name = "+ jnlpReader.getUiName());
 			writer.println();
-			if (jnlpReader.getBgImagePath().trim().length()>0) {
+			if ((null!=bgImage) &&(bgImage.toString().trim().length()>0)) {
 				writer.println("# Background Image");
-				writer.println("ui.background_image = " + jnlpReader.getBgImagePath());
+				writer.println("ui.background_image = " + bgImage);
 				writer.println();
 			}
-			if (jnlpReader.getIconPath().trim().length()>0) {
+			if ((null!=iconImage) && (iconImage.toString().trim().length()>0)) {
 				writer.println("# Icon Image");
-				writer.println("ui.icon = " + jnlpReader.getIconPath());
+				writer.println("ui.icon = " + iconImage);
 				writer.println();
 			}
 			if ((null!=progressbarColor) && (progressbarColor.toString().trim().length()>0)) {
@@ -99,6 +106,7 @@ public class GetDownTxt extends AbstractMojo{
 			}
     		writer.close();
     		copyJarFiles(jnlpReader);
+    		copyImgFiles(jnlpReader);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			throw new MojoExecutionException("Failed to create digest", e);
@@ -120,6 +128,16 @@ public class GetDownTxt extends AbstractMojo{
 			makeDirectoryIfNecessary(dstDir);
 			getLog().debug("srcFile:" +srcFile  +  "  --->  " + "destFile:" + dstFile);
 			FileUtil.copy(srcFile,dstFile);
+		}
+	}
+	private void copyImgFiles(JnlpReader jnlpReader) throws IOException, MojoExecutionException {
+		// TODO TEST 16.11.2018
+		File srcDir = new File(jnlpReader.getJnlpFile().getParent(),"img");
+		if (srcDir.exists()) {
+			getLog().debug("img srcDir:" +srcDir);
+			File destDir = new File(appdir,"img");
+			getLog().debug("destDir:" +destDir);
+			FileUtils.copyDirectory(srcDir, destDir);
 		}
 	}
 
