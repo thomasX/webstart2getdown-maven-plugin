@@ -13,7 +13,7 @@
 
 ## [Summary:](#summary)
 
-This plugin is designed to create a complete [GETDOWN](https://github.com/threerings/getdown/) - project, which includes the **getdown.txt**, **digest.txt** and **digest2.txt**. The **getdown.txt** will be created from a jnlp - File. The [maven-webstart-plugin]() creates the needed jnlp - File. Further this plugin is able to sign your code with a specific **keystore**. However this feature is only optional (see [Features](#features)).
+This plugin is designed to create a complete [GETDOWN](https://github.com/threerings/getdown/) - project, which includes the **getdown.txt**, **digest.txt** and **digest2.txt**. The **getdown.txt** will be created from a jnlp - File. The [maven-webstart-plugin](https://mvnrepository.com/artifact/org.codehaus.mojo/webstart-maven-plugin) creates the needed jnlp - File. Further this plugin is able to sign your code with a specific **keystore**. However this feature is only optional (see [Features](#features)).
 
 ## [Features:](#features)
 
