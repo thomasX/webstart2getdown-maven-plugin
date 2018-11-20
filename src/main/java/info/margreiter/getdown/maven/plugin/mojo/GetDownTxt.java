@@ -68,11 +68,13 @@ public class GetDownTxt extends AbstractMojo{
 			if ((null!=bgImage) &&(bgImage.toString().trim().length()>0)) {
 				writer.println("# Background Image");
 				writer.println("ui.background_image = " + bgImage);
+				writer.println(" resource = " + bgImage);
 				writer.println();
 			}
 			if ((null!=iconImage) && (iconImage.toString().trim().length()>0)) {
 				writer.println("# Icon Image");
 				writer.println("ui.icon = " + iconImage);
+				writer.println(" resource = " + iconImage);
 				writer.println();
 			}
 			if ((null!=progressbarColor) && (progressbarColor.toString().trim().length()>0)) {
@@ -132,13 +134,20 @@ public class GetDownTxt extends AbstractMojo{
 	}
 	private void copyImgFiles(JnlpReader jnlpReader) throws IOException, MojoExecutionException {
 		// TODO TEST 16.11.2018
-		File srcDir = new File(jnlpReader.getJnlpFile().getParent(),"img");
-		if (srcDir.exists()) {
-			getLog().debug("img srcDir:" +srcDir);
-			File destDir = new File(appdir,"img");
-			getLog().debug("destDir:" +destDir);
-			FileUtils.copyDirectory(srcDir, destDir);
-		}
+			if ((null!=bgImage) &&(bgImage.toString().trim().length()>0)) {
+				copyImageSrc(jnlpReader,bgImage);
+			}
+			if ((null!=iconImage) && (iconImage.toString().trim().length()>0)) {
+				copyImageSrc(jnlpReader,iconImage);
+			}
+	}
+
+	private void copyImageSrc(JnlpReader jnlpReader, String image) throws MojoExecutionException, IOException {
+		File srcFile=new File(jnlpReader.getJnlpFile().getParentFile(), image);
+		File destFile=new File(appdir,image);
+		String destDir = destFile.getParent();
+		makeDirectoryIfNecessary(new File(destDir));
+		FileUtils.copyFile(srcFile, destFile);
 	}
 
 	private void writeApplicationJarFiles(PrintWriter writer, Vector<String> requestedJars) {
