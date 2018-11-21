@@ -148,4 +148,4 @@ https://github.com/thomasX/webstart2getdown-maven-plugin-example1
 
 ***
 
-**by** and [thomasX](https://github.com/thomasX) and [Maz47](https://github.com/maz47)
+**by** [thomasX](https://github.com/thomasX) and [Maz47](https://github.com/maz47)
