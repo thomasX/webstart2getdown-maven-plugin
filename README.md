@@ -66,11 +66,11 @@ This goal will sign your the files, which has been created by the **getdowntxt -
 
 >`ui_progress_bar` defines the color of the progressbar (default it will be set to `null`)
 
->`ui_progress_text` defines the color of the progressbar text (default it will be set to `null`)
+>`ui_progress_text` defines the color of the progressbar text (default it will be set to `black`)
 
 >`ui_progress_image` defines the image of the progressbar (default it will be set to `null`)
 
->`ui_status` defines the color of the status text (default it will be set to `null`)
+>`ui_status` defines the color of the status text (default it will be set to `black`)
 
 >`ui_text_shadow` definest the color of the text shadow (default it will be set to `null`so shadow is disabled)
 
@@ -91,7 +91,6 @@ This goal will sign your the files, which has been created by the **getdowntxt -
 >`storepass` defines the password for the keystore.jks (default it will be set to `null`)
 
 >`alias` defines the alias for the used key in your keystore (default it will be set to `null`)
-
 
 ## [Usage:](#usage)
 
@@ -147,4 +146,6 @@ This goal will sign your the files, which has been created by the **getdowntxt -
 
 https://github.com/thomasX/webstart2getdown-maven-plugin-example1 
 
-by and [thomasX](https://github.com/thomasX) and [Maz47](https://github.com/maz47)
+***
+
+**by** and [thomasX](https://github.com/thomasX) and [Maz47](https://github.com/maz47)
