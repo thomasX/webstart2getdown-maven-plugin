@@ -19,23 +19,12 @@ import info.margreiter.getdown.maven.plugin.uitl.JnlpReader;
 
 /**
  * created: 14.11.2018
+ * 
  * @author f3thomas
  */
 
 @Mojo(name = "getdowntxt")
 public class GetDownTxt extends AbstractMojo {
-
-	/**
-	 * output directory for getdown - files
-	 */
-	@Parameter(defaultValue = "target")
-	private String appdir;
-
-	/**
-	 * path to source - files
-	 */
-	@Parameter(required = true)
-	private String appbase;
 
 	/**
 	 * path to jnlp - file
@@ -44,34 +33,150 @@ public class GetDownTxt extends AbstractMojo {
 	private String jnlpfile;
 
 	/**
-	 * path to iconImage
+	 * path to source - files
 	 */
-	@Parameter(defaultValue = "")
-	private String iconImage = "";
+	@Parameter(required = true)
+	private String appbase;
 
 	/**
-	 * path to bgImage
+	 * output directory for getdown - files
+	 */
+	@Parameter(defaultValue = "target")
+	private String appdir;
+
+	/**
+	 * if application is running in version mode this entry contains the
+	 * specific version number
 	 */
 	@Parameter(defaultValue = "")
-	private String bgImage = "";
+	private String version;
+
+	/**
+	 * if true it will alow getdown to run the application without reaching the
+	 * downloadserver
+	 */
+	@Parameter(defaultValue = "")
+	private String allow_offline;
 
 	/**
 	 * defines the color of the background
 	 */
 	@Parameter(defaultValue = "")
-	private String bgColor;
+	private String ui_background;
+
+	/**
+	 * path to background image
+	 */
+	@Parameter(defaultValue = "")
+	private String ui_background_image;
+
+	/**
+	 * path to background error image
+	 */
+	@Parameter(defaultValue = "")
+	private String ui_error_background;
+
+	/**
+	 * path to the ui icon
+	 */
+	@Parameter(defaultValue = "")
+	private String ui_icon;
+
+	/**
+	 * defines the dimensions of the rectangle in which the progress
+	 * displays<br>
+	 * 
+	 * eg. "17,321,358,22" <br>
+	 * -> 17 pixels from the left of the window <br>
+	 * -> 321 pixels from the top of the window <br>
+	 * -> 458 pixels wide <br>
+	 * -> 22 pixels tall <br>
+	 */
+	@Parameter(defaultValue = "")
+	private String ui_progress;
 
 	/**
 	 * defines the color of the progressbar
 	 */
 	@Parameter(defaultValue = "")
-	private String progressbarColor;
+	private String ui_progress_bar;
 
 	/**
 	 * defines the color of the progressbar text
 	 */
 	@Parameter(defaultValue = "")
-	private String progressTextColor;
+	private String ui_progress_text;
+
+	/**
+	 * defines the image for the progressbar
+	 */
+	@Parameter(defaultValue = "")
+	private String ui_progress_image;
+
+	/**
+	 * defines the the dimenstion of the rectangle in which the status is shown
+	 * (see ui_progress)
+	 */
+	@Parameter(defaultValue = "")
+	private String ui_status;
+
+	/**
+	 * defines the color of the status text
+	 */
+	@Parameter(defaultValue = "")
+	private String ui_status_text;
+
+	/**
+	 * specifies the color of the shadow for the text
+	 */
+	@Parameter(defaultValue = "")
+	private String ui_text_shadow;
+
+	/**
+	 * defines if ui-decoration should be hidden
+	 */
+	@Parameter(defaultValue = "")
+	private String ui_hide_decorations;
+
+	/**
+	 * defines the minimum show time for getdown
+	 */
+	@Parameter(defaultValue = "")
+	private String ui_min_show_seconds;
+
+	/**
+	 * defines an URL which will be shown if an error occurs
+	 */
+	@Parameter(defaultValue = "")
+	private String ui_install_error;
+
+	/**
+	 * defines the path to a mac dockicon
+	 */
+	@Parameter(defaultValue = "")
+	private String ui_mac_dock_icon;
+
+	/**
+	 * to supply argumetns to the JVM <br>
+	 * eg. -Djava.library.path=%APPDIR%/nativ<br>
+	 * <br>
+	 * 
+	 * 
+	 * <b>!!! -Xmx and -Xms allready set in jnlp - file<br>
+	 * <br>
+	 * !!! the '-' character has to be supplied!</b>
+	 */
+	@Parameter(defaultValue = "")
+	private String[] jvmargs;
+
+	/**
+	 * to supply argumetns to the application<br>
+	 * <br>
+	 * 
+	 * <b> !!! the '-' character has to be supplied!</b>
+	 */
+	@Parameter(defaultValue = "")
+	private String[] appargs;
 
 	@Parameter(defaultValue = "${plugin}", readonly = true)
 	protected PluginDescriptor plugin;
@@ -91,34 +196,96 @@ public class GetDownTxt extends AbstractMojo {
 			writer.println("# The URL from which the client is downloaded");
 			writer.println("appbase = " + appbase);
 			writer.println();
+			if (isParameterUsed(version)){
+				writer.println("# Version");
+				writer.println("version = " + version);
+				writer.println();
+			}
+			if (isParameterUsed(allow_offline)){
+				writer.println("# Allow offline execution");
+				writer.println("allow_offline = " + allow_offline);
+				writer.println();
+			}
 			writer.println("# UI Configuration");
 			writer.println("ui.name = " + jnlpReader.getUiName());
 			writer.println();
-			if ((null != bgImage) && (bgImage.toString().trim().length() > 0)) {
+			if (isParameterUsed(ui_background)) {
+				writer.println("# Background Color");
+				writer.println("ui.background = " + ui_background);
+				writer.println();
+			}
+			if (isParameterUsed(ui_background_image)) {
 				writer.println("# Background Image");
-				writer.println("ui.background_image = " + bgImage);
-				writer.println(" resource = " + bgImage);
+				writer.println("ui.background_image = " + ui_background_image);
+				writer.println("resource = " + ui_background_image);
 				writer.println();
 			}
-			if ((null != iconImage) && (iconImage.toString().trim().length() > 0)) {
+			if (isParameterUsed(ui_error_background)) {
+				writer.println("# Background Error Image");
+				writer.println("ui.error_background = " + ui_error_background);
+				writer.println("resource = " + ui_error_background);
+				writer.println();
+			}
+			if (isParameterUsed(ui_icon)) {
 				writer.println("# Icon Image");
-				writer.println("ui.icon = " + iconImage);
-				writer.println(" resource = " + iconImage);
+				writer.println("ui.icon = " + ui_icon);
+				writer.println("resource = " + ui_icon);
 				writer.println();
 			}
-			if ((null != progressbarColor) && (progressbarColor.toString().trim().length() > 0)) {
+			if (isParameterUsed(ui_progress)) {
+				writer.println("# Progressbar position");
+				writer.println("ui.progress = " + ui_progress);
+				writer.println();
+			}
+			if (isParameterUsed(ui_progress_bar)) {
 				writer.println("# Progressbar Color");
-				writer.println("ui.progress_bar = " + progressbarColor);
+				writer.println("ui.progress_bar = " + ui_progress_bar);
 				writer.println();
 			}
-			if ((null != progressTextColor) && (progressTextColor.toString().trim().length() > 0)) {
-				writer.println("# Progressbar TextColor");
-				writer.println("ui.progress_text = " + progressTextColor);
+			if (isParameterUsed(ui_progress_text)) {
+				writer.println("# Progressbar Text Color");
+				writer.println("ui.progress_text = " + ui_progress_text);
 				writer.println();
 			}
-			if ((null != bgColor) && (bgColor.toString().trim().length() > 0)) {
-				writer.println("# BackgroundColor  eg: ui.background = 3399AA");
-				writer.println("ui.background = " + bgColor);
+			if (isParameterUsed(ui_progress_image)) {
+				writer.println("# Progress Image");
+				writer.println("ui.progress_image = " + ui_progress_image);
+				writer.println("resource = " + ui_progress_image);
+				writer.println();
+			}
+			if (isParameterUsed(ui_status)) {
+				writer.println("# Status Dimension");
+				writer.println("ui.status = " + ui_status);
+				writer.println();
+			}
+			if (isParameterUsed(ui_status_text)) {
+				writer.println("# Status Text Color");
+				writer.println("ui.status_text = " + ui_status_text);
+				writer.println();
+			}
+			if (isParameterUsed(ui_text_shadow)) {
+				writer.println("# Text Shadow Color");
+				writer.println("ui.text_shadow = " + ui_text_shadow);
+				writer.println();
+			}
+			if (isParameterUsed(ui_hide_decorations)) {
+				writer.println("# Hide UI Decorations");
+				writer.println("ui.hide_decorations = " + ui_hide_decorations);
+				writer.println();
+			}
+			if (isParameterUsed(ui_min_show_seconds)) {
+				writer.println("# UI minimum show time");
+				writer.println("ui.min_show_seconds = " + ui_min_show_seconds);
+				writer.println();
+			}
+			if (isParameterUsed(ui_install_error)) {
+				writer.println("# Install error URL");
+				writer.println("ui.install_error = " + ui_install_error);
+				writer.println();
+			}
+			if (isParameterUsed(ui_mac_dock_icon)) {
+				writer.println("# UI mac docicon");
+				writer.println("ui.mac_doc_icon = " + ui_mac_dock_icon);
 				writer.println();
 			}
 			writer.println("# Application jar files");
@@ -135,12 +302,34 @@ public class GetDownTxt extends AbstractMojo {
 				writer.println("jvmarg = -Xmx" + jnlpReader.getMaxHeapSize());
 				writer.println();
 			}
+			if ((null != jvmargs) && (jvmargs.length > 0)) {
+				writer.println("# JVM Arguments");
+				writeArguments(writer, jvmargs, "jvmarg");
+				writer.println();
+			}
+			if ((null != appargs) && (appargs.length > 0)) {
+				writer.println("# APP Arguments");
+				writeArguments(writer, appargs, "apparg");
+				writer.println();
+			}
 			writer.close();
 			copyJarFiles(jnlpReader);
 			copyImgFiles(jnlpReader);
 			copyGetdownClient();
 		} catch (IOException e) {
 			throw new MojoExecutionException("Failed to create getdown.txt! ", e);
+		}
+	}
+
+	private boolean isParameterUsed(String parameter) {
+		// TODO TEST 16.11.2018
+		return (null != parameter) && (parameter.toString().trim().length() > 0);
+	}
+
+	private void writeArguments(PrintWriter writer, String[] args, String name) {
+		// TODO TEST 16.11.2018
+		for (String arg : args) {
+			if(isParameterUsed(arg)) writer.println(name + " = " + arg);
 		}
 	}
 
@@ -164,11 +353,11 @@ public class GetDownTxt extends AbstractMojo {
 
 	private void copyImgFiles(JnlpReader jnlpReader) throws IOException, MojoExecutionException {
 		// TODO TEST 16.11.2018
-		if ((null != bgImage) && (bgImage.toString().trim().length() > 0)) {
-			copyImageSrc(jnlpReader, bgImage);
+		if (isParameterUsed(ui_background_image)) {
+			copyImageSrc(jnlpReader, ui_background_image);
 		}
-		if ((null != iconImage) && (iconImage.toString().trim().length() > 0)) {
-			copyImageSrc(jnlpReader, iconImage);
+		if (isParameterUsed(ui_icon)) {
+			copyImageSrc(jnlpReader, ui_icon);
 		}
 	}
 
