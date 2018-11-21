@@ -45,21 +45,53 @@ This goal will sign your the files, which has been created by the **getdowntxt -
 
 >`appdir` defines the output directory for the getdown - files (default `{project.basedir}\target\` will be used)
 
+>`version` defines the current version (default it will be set to `null`)
+
+>`allow_offline` defines if getdown is allowed to execute the application if no connection to appbase is established (default it will be set to `false`)
+
+>`ui_background` defines the background color which is shown when the background image is not set or is not loaded (default it will be set to `null`)
+
+>`ui_background_image` defines the location of the background image (default it will be set to `null`)
+
+>`ui_error_background` defines the location of the error background image (default it will be set to `null`)
+
+>`ui_icon` defines the location of the icon image (default it will be set to `null`)
+
+>`ui_progress` defines the dimensions of the rectangle in which the progress displays (default it will be set to `null`)<br>
+>>> eg. "17,321,358,22" <br>
+	    17 pixels from the left of the window <br>
+	    321 pixels from the top of the window <br>
+	    458 pixels wide <br>
+	    22 pixels tall <br>
+
+>`ui_progress_bar` defines the color of the progressbar (default it will be set to `null`)
+
+>`ui_progress_text` defines the color of the progressbar text (default it will be set to `null`)
+
+>`ui_progress_image` defines the image of the progressbar (default it will be set to `null`)
+
+>`ui_status` defines the color of the status text (default it will be set to `null`)
+
+>`ui_text_shadow` definest the color of the text shadow (default it will be set to `null`so shadow is disabled)
+
+>`ui_hide_decorations` defines if ui decorations should be hidden (default it will be `false`)
+
+>`ui_min_show_seconds` defines the minimum show tim for getdown (default it will be set to `5s`)
+
+>`ui_install_error` defines the URL which will be shown if an error occurs (default it will be set to `null`)
+
+>`ui_mac_dock_icon` defines the location of the dock icon for MACs (default it will be set to `null`)
+
+>`jvmargs` defines the arguments for the JVM (more values possible see [Example](#example), default it will be set to `null`)
+
+>`appargs` defines the arguments for your application (more values possible see [Example](#example), default it will be set to `null`)
+
 >`keystore` defines the location of the keystore.jks for code signing (default it will be set to `null` so signing is disabled)
 
 >`storepass` defines the password for the keystore.jks (default it will be set to `null`)
 
 >`alias` defines the alias for the used key in your keystore (default it will be set to `null`)
 
->`bgImage` defines the location of the background image (default it will be set to `null`)
-
->`bgColor` defines the background color which is shown when the background image is not set or is not loaded (default it will be set to `null`)
-
->`iconImage` defines the location of the icon image (default it will be set to `null`)
-
->`progressbarColor` defines the color of the progressbar (default it will be set to `null`)
-
->`progressTextColor` defines the color of the progressbar text (default it will be set to `null`)
 
 ## [Usage:](#usage)
 
