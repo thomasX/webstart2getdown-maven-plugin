@@ -1,4 +1,4 @@
-# :white_check_mark: _webstart2getdown_ Maven Plugin 
+# _webstart2getdown_ Maven Plugin 
 
 ## [Table of Contents:](#table-of-contents)
 
