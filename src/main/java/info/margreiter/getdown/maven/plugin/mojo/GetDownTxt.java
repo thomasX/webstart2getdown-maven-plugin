@@ -196,6 +196,9 @@ public class GetDownTxt extends AbstractMojo {
 			writer.println("# The URL from which the client is downloaded");
 			writer.println("appbase = " + appbase);
 			writer.println();
+			writer.println("# getdownclient ");
+			writer.println("resource = " + "getdown.jar");
+			writer.println();
 			if (isParameterUsed(version)){
 				writer.println("# Version");
 				writer.println("version = " + version);
