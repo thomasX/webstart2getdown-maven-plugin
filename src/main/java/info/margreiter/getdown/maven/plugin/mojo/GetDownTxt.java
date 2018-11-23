@@ -333,7 +333,8 @@ public class GetDownTxt extends AbstractMojo {
 
 	private void generateExtrasFile(JnlpReader jnlpReader) throws FileNotFoundException, UnsupportedEncodingException {
 		// TODO TEST 23.11.2018
-		PrintWriter writer = new PrintWriter(new File(appdir, "extras.txt"), "UTF-8");
+		File appDir = new File(appdir);
+		PrintWriter writer = new PrintWriter(new File(appDir.getParent(), "extras.txt"), "UTF-8");
 		writer.println("jvmarg = -Xms" + jnlpReader.getInitialHeapSize());
 		writer.println("jvmarg = -Xmx" + jnlpReader.getMaxHeapSize());
 		writer.close();
