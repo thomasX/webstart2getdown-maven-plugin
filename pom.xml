@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>info.margreiter.getdown</groupId>
   <artifactId>webstart2getdown-maven-plugin</artifactId>
-  <version>1.0.2</version>
+  <version>1.8.0</version>
   <name>webstart2getdown Maven Plugin</name>
   <url>https://github.com/thomasX/getdown-maven-plugin</url>
   <packaging>maven-plugin</packaging>
@@ -10,7 +10,7 @@
         <maven.test.failure.ignore>true</maven.test.failure.ignore>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.version>4.11</junit.version>
-        <getdown.version>1.7.1</getdown.version>
+        <getdown.version>1.8.0</getdown.version>
     </properties>
 
     <dependencies>
@@ -26,8 +26,18 @@
 			<scope>provided</scope>
 		</dependency>
         <dependency>
-            <groupId>com.threerings</groupId>
-            <artifactId>getdown</artifactId>
+            <groupId>com.threerings.getdown</groupId>
+            <artifactId>getdown-launcher</artifactId>
+            <version>${getdown.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.threerings.getdown</groupId>
+            <artifactId>getdown-core</artifactId>
+            <version>${getdown.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.threerings.getdown</groupId>
+            <artifactId>getdown-ant</artifactId>
             <version>${getdown.version}</version>
         </dependency>
 
