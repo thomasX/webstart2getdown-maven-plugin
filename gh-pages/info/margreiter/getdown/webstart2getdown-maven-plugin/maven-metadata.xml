@@ -8,6 +8,10 @@
     <versions>
       <version>1.7.1</version>
     </versions>
+<<<<<<< HEAD
     <lastUpdated>20181123065234</lastUpdated>
+=======
+    <lastUpdated>20181122101946</lastUpdated>
+>>>>>>> branch 'gh-pages' of https://github.com/thomasX/webstart2getdown-maven-plugin.git
   </versioning>
 </metadata>
