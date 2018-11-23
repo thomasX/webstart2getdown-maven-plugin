@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <plugins>
+    <plugin>
+      <name>webstart2getdown Maven Plugin</name>
+      <prefix>webstart2getdown</prefix>
+      <artifactId>webstart2getdown-maven-plugin</artifactId>
+    </plugin>
+  </plugins>
+</metadata>

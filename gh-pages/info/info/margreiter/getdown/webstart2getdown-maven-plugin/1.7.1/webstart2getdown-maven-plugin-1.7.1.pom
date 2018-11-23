@@ -1,0 +1,114 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>info.margreiter.getdown</groupId>
+	<artifactId>webstart2getdown-maven-plugin</artifactId>
+	<version>1.7.1</version>
+	<name>webstart2getdown Maven Plugin</name>
+	<url>https://github.com/thomasX/webstart2getdown-maven-plugin</url>
+	<packaging>maven-plugin</packaging>
+
+	<properties>
+		<maven.test.failure.ignore>true</maven.test.failure.ignore>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<junit.version>4.11</junit.version>
+		<getdown.version>1.7.1</getdown.version>
+	</properties>
+
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<scm>
+		<url>https://github.com/thomasX/getdown-maven-plugin</url>
+		<connection>scm:git:git@github.com/thomasX/webstart2getdown-maven-plugin.git</connection>
+		<developerConnection>scm:git:git@github.com:thomasX/webstart2getdown-maven-plugin.git</developerConnection>
+	</scm>
+
+	<description>A maven build plugin for generating a complete getdown stub based on a webstart-project</description>
+	
+	<developers>
+		<developer>
+			<id>tm</id>
+			<name>thomas margreiter</name>
+			<email>t.margreiter@gmail.com</email>
+			<roles>
+				<role>Owner</role>
+			</roles>
+		</developer>
+	</developers>
+
+	<distributionManagement>
+		<repository>
+			<id>internal.repo</id>
+			<url>file://${project.build.directory}/gh-pages</url>
+		</repository>
+	</distributionManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.maven</groupId>
+			<artifactId>maven-plugin-api</artifactId>
+			<version>3.3.9</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven.plugin-tools</groupId>
+			<artifactId>maven-plugin-annotations</artifactId>
+			<version>3.3</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.threerings</groupId>
+			<artifactId>getdown</artifactId>
+			<version>${getdown.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-plugin-plugin</artifactId>
+				<version>3.2</version>
+				<configuration>
+					<skipErrorNoDescriptorsFound>true</skipErrorNoDescriptorsFound>
+				</configuration>
+				<executions>
+					<execution>
+						<id>mojo-descriptor</id>
+						<goals>
+							<goal>descriptor</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.2</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.10.1</version>
+				<configuration>
+					<additionalparam>-Xdoclint:none</additionalparam>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
