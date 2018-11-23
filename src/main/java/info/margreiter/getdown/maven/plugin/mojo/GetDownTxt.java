@@ -396,7 +396,7 @@ public class GetDownTxt extends AbstractMojo {
 
 	private void copyGetdownClient() throws MojoExecutionException, IOException {
 		// TODO TEST 14.11.2018
-		Artifact getdown = (Artifact) plugin.getArtifactMap().get("com.threerings:getdown");
+		Artifact getdown = (Artifact) plugin.getArtifactMap().get("com.threerings.getdown:getdown-launcher");
 		File srcFile = getdown.getFile();
 		File destFile = new File(appdir, "getdown.jar");
 		getLog().debug("copying srcFile:" + srcFile + "  --->  " + "destFile:" + destFile);
