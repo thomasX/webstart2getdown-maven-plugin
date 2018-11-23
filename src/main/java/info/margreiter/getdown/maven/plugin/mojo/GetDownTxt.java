@@ -1,8 +1,10 @@
 package info.margreiter.getdown.maven.plugin.mojo;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.Vector;
 
 import org.apache.maven.artifact.Artifact;
@@ -179,7 +181,7 @@ public class GetDownTxt extends AbstractMojo {
 	private String[] appargs;
 
 	@Parameter(defaultValue = "${plugin}", readonly = true)
-	protected PluginDescriptor plugin;
+	private PluginDescriptor plugin;
 
 	public void execute() throws MojoExecutionException {
 		// TODO TEST 14.11.2018
@@ -289,6 +291,7 @@ public class GetDownTxt extends AbstractMojo {
 			if (isParameterUsed(ui_mac_dock_icon)) {
 				writer.println("# UI mac docicon");
 				writer.println("ui.mac_doc_icon = " + ui_mac_dock_icon);
+				writer.println("resource = " + ui_mac_dock_icon);
 				writer.println();
 			}
 			writer.println("# Application jar files");
@@ -297,20 +300,26 @@ public class GetDownTxt extends AbstractMojo {
 			writer.println("# The main entry point for the application");
 			writer.println("class = " + jnlpReader.getMainClass());
 			writer.println();
-			if (jnlpReader.hasValidHeapSizeArguments()) {
-				writer.println("# Initial Heap Size");
-				writer.println("jvmarg = -Xms" + jnlpReader.getInitialHeapSize());
-				writer.println();
-				writer.println("# Max. Heap Size");
-				writer.println("jvmarg = -Xmx" + jnlpReader.getMaxHeapSize());
-				writer.println();
-			}
-			if ((null != jvmargs) && (jvmargs.length > 0)) {
+			
+			/**
+			 * we must be able to overwrite these settings, so we can't write 
+			 * these into our getdown.txt
+			 */
+//			if (jnlpReader.hasValidHeapSizeArguments()) {
+//				writer.println("# Initial Heap Size");
+//				writer.println("jvmarg = -Xms" + jnlpReader.getInitialHeapSize());
+//				writer.println();
+//				writer.println("# Max. Heap Size");
+//				writer.println("jvmarg = -Xmx" + jnlpReader.getMaxHeapSize());
+//				writer.println();
+//			}
+			
+			if ((null != jvmargs) && (jvmargs.length > 0) && (null != jvmargs[0])) {
 				writer.println("# JVM Arguments");
 				writeArguments(writer, jvmargs, "jvmarg");
 				writer.println();
 			}
-			if ((null != appargs) && (appargs.length > 0)) {
+			if ((null != appargs) && (appargs.length > 0) && (null != appargs[0])) {
 				writer.println("# APP Arguments");
 				writeArguments(writer, appargs, "apparg");
 				writer.println();
@@ -319,9 +328,19 @@ public class GetDownTxt extends AbstractMojo {
 			copyJarFiles(jnlpReader);
 			copyImgFiles(jnlpReader);
 			copyGetdownClient();
+			generateExtrasFile(jnlpReader);
 		} catch (IOException e) {
 			throw new MojoExecutionException("Failed to create getdown.txt! ", e);
 		}
+	}
+
+	private void generateExtrasFile(JnlpReader jnlpReader) throws FileNotFoundException, UnsupportedEncodingException {
+		// TODO TEST 23.11.2018
+		File appDir = new File(appdir).getParentFile();
+		PrintWriter writer = new PrintWriter(new File(appDir.getAbsolutePath() + "\\jnlp", "extras.txt"), "UTF-8");
+		writer.println("jvmarg = -Xms" + jnlpReader.getInitialHeapSize());
+		writer.println("jvmarg = -Xmx" + jnlpReader.getMaxHeapSize());
+		writer.close();
 	}
 
 	private boolean isParameterUsed(String parameter) {
