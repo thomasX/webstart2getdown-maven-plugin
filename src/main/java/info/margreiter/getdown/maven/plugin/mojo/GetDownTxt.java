@@ -286,6 +286,7 @@ public class GetDownTxt extends AbstractMojo {
 			if (isParameterUsed(ui_mac_dock_icon)) {
 				writer.println("# UI mac docicon");
 				writer.println("ui.mac_doc_icon = " + ui_mac_dock_icon);
+				writer.println("resource = " + ui_mac_dock_icon);
 				writer.println();
 			}
 			writer.println("# Application jar files");
