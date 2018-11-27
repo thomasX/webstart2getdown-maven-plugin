@@ -170,6 +170,9 @@ public class GetDownTxt extends AbstractMojo {
 	 */
 	@Parameter(defaultValue = "")
 	private String[] jvmargs;
+	
+	@Parameter(defaultValue = "")
+	private String[] java_location;
 
 	/**
 	 * to supply argumetns to the application<br>
@@ -313,6 +316,12 @@ public class GetDownTxt extends AbstractMojo {
 //				writer.println("jvmarg = -Xmx" + jnlpReader.getMaxHeapSize());
 //				writer.println();
 //			}
+			
+			if ((null != java_location) && (java_location.length > 0) && (null != java_location[0])) {
+				writer.println("# JVM locations");
+				writeArguments(writer, java_location, "java_location");
+				writer.println();
+			}
 			
 			if ((null != jvmargs) && (jvmargs.length > 0) && (null != jvmargs[0])) {
 				writer.println("# JVM Arguments");
