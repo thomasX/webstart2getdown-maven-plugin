@@ -174,6 +174,12 @@ public class GetDownTxt extends AbstractMojo {
 	@Parameter
 	private String[] java_locations;
 
+	@Parameter(defaultValue = "")
+	private String java_min_version;
+	
+	@Parameter
+	private Boolean java_exact_version_required;
+	
 	/**
 	 * to supply argumetns to the application<br>
 	 * <br>
@@ -317,6 +323,22 @@ public class GetDownTxt extends AbstractMojo {
 //				writer.println();
 //			}
 			
+			
+			if (isParameterUsed(java_min_version)) {
+				writer.println("# minimum Java Version requested");
+				writer.println("java_min_version = " + java_min_version);
+				writer.println();
+			}
+			if ((null!=  java_exact_version_required ) && (java_exact_version_required.toString().toLowerCase().equals(true))) {
+				writer.println("# minimum Java Version requested");
+				writer.println("java_exact_version_required = true");
+				writer.println();
+			}
+			if (isParameterUsed(ui_install_error)) {
+				writer.println("# Install error URL");
+				writer.println("ui.install_error = " + ui_install_error);
+				writer.println();
+			}
 			if ((null != java_locations) && (java_locations.length > 0) && (null != java_locations[0])) {
 				writer.println("# JVM locations");
 				writeArguments(writer, java_locations, "java_location");
