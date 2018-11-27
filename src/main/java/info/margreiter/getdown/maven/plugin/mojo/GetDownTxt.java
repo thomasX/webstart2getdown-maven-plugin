@@ -172,7 +172,7 @@ public class GetDownTxt extends AbstractMojo {
 	private String[] jvmargs;
 	
 	@Parameter
-	private String[] java_location;
+	private String[] java_locations;
 
 	/**
 	 * to supply argumetns to the application<br>
@@ -317,9 +317,9 @@ public class GetDownTxt extends AbstractMojo {
 //				writer.println();
 //			}
 			
-			if ((null != java_location) && (java_location.length > 0) && (null != java_location[0])) {
+			if ((null != java_locations) && (java_locations.length > 0) && (null != java_locations[0])) {
 				writer.println("# JVM locations");
-				writeArguments(writer, java_location, "java_location");
+				writeArguments(writer, java_locations, "java_location");
 				writer.println();
 			}
 			
