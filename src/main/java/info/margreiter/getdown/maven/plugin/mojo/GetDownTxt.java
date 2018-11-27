@@ -168,10 +168,10 @@ public class GetDownTxt extends AbstractMojo {
 	 * <br>
 	 * !!! the '-' character has to be supplied!</b>
 	 */
-	@Parameter(defaultValue = "")
+	@Parameter
 	private String[] jvmargs;
 	
-	@Parameter(defaultValue = "")
+	@Parameter
 	private String[] java_location;
 
 	/**
