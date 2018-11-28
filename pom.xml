@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>info.margreiter.getdown</groupId>
 	<artifactId>webstart2getdown-maven-plugin</artifactId>
-	<version>1.8.0</version>
+	<version>1.8.2</version>
 	<name>webstart2getdown Maven Plugin</name>
 	<url>https://github.com/thomasX/webstart2getdown-maven-plugin</url>
 	<packaging>maven-plugin</packaging>
@@ -12,7 +12,7 @@
 		<maven.test.failure.ignore>true</maven.test.failure.ignore>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<junit.version>4.11</junit.version>
-		<getdown.version>1.8.0</getdown.version>
+		<getdown.version>1.8.2</getdown.version>
 	</properties>
 
 	<licenses>
