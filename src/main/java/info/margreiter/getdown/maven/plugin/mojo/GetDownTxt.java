@@ -188,6 +188,9 @@ public class GetDownTxt extends AbstractMojo {
 	 */
 	@Parameter(defaultValue = "")
 	private String[] appargs;
+	
+	@Parameter(defaultValue = "")
+	private String[] resources;
 
 	@Parameter(defaultValue = "${plugin}", readonly = true)
 	private PluginDescriptor plugin;
@@ -353,6 +356,11 @@ public class GetDownTxt extends AbstractMojo {
 			if ((null != appargs) && (appargs.length > 0) && (null != appargs[0])) {
 				writer.println("# APP Arguments");
 				writeArguments(writer, appargs, "apparg");
+				writer.println();
+			}
+			if ((null != resources) && (resources.length > 0) && (null != resources[0])) {
+				writer.println("# Additional Resources");
+				writeArguments(writer, resources, "resources");
 				writer.println();
 			}
 			writer.close();
