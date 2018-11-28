@@ -360,7 +360,7 @@ public class GetDownTxt extends AbstractMojo {
 			}
 			if ((null != resources) && (resources.length > 0) && (null != resources[0])) {
 				writer.println("# Additional Resources");
-				writeArguments(writer, resources, "resources");
+				writeArguments(writer, resources, "resource");
 				writer.println();
 			}
 			writer.close();
