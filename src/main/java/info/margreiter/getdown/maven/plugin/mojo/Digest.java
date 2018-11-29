@@ -48,12 +48,12 @@ public class Digest extends AbstractMojo {
 		getLog().debug("creating digest - files ...");
 		getLog().debug("used output directory (appdi): " + appdir);
 		try {
-			if ((keystore.toString().trim().length() > 0)) {
+			if ((null!=keystore) && (keystore.toString().trim().length() > 0)) {
 				File ks = new File(keystore);
 				getLog().debug("used keystore: " + ks + " is existing: " + ks.exists());
 				Digester.createDigests(new File(appdir), ks, storepass, alias);
 			}
-			if ((keystore.toString().trim().length() < 1)) {
+			if ((null==keystore)||(keystore.toString().trim().length() < 1)) {
 				Digester.createDigests(new File(appdir), null, null, null);
 			}
 		} catch (IOException | GeneralSecurityException e) {

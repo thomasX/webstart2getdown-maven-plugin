@@ -223,7 +223,7 @@ public class GetDownTxt extends AbstractMojo {
 				writer.println("allow_offline = " + allow_offline);
 				writer.println();
 			}
-			writer.println("# UI Configuration");
+			writer.println("# UI Configuration");			
 			writer.println("ui.name = " + jnlpReader.getUiName());
 			writer.println();
 			if (isParameterUsed(ui_background)) {
@@ -231,22 +231,32 @@ public class GetDownTxt extends AbstractMojo {
 				writer.println("ui.background = " + ui_background);
 				writer.println();
 			}
-			if (isParameterUsed(ui_background_image)) {
+			if (isParameterUsed(ui_background_image)) {				
 				writer.println("# Background Image");
 				writer.println("ui.background_image = " + ui_background_image);
 				writer.println("resource = " + ui_background_image);
 				writer.println();
-			}
+			} else {
+				writer.println("# Background Image");
+				writer.println("ui.background_image = " + jnlpReader.getBgImagePath());
+				writer.println("resource = " + jnlpReader.getBgImagePath());
+				writer.println();
+			}			
 			if (isParameterUsed(ui_error_background)) {
 				writer.println("# Background Error Image");
 				writer.println("ui.error_background = " + ui_error_background);
 				writer.println("resource = " + ui_error_background);
 				writer.println();
 			}
-			if (isParameterUsed(ui_icon)) {
+			if (isParameterUsed(ui_icon)) {				
 				writer.println("# Icon Image");
 				writer.println("ui.icon = " + ui_icon);
 				writer.println("resource = " + ui_icon);
+				writer.println();
+			} else {
+				writer.println("# Icon Image");
+				writer.println("ui.icon = " + jnlpReader.getIconPath());
+				writer.println("resource = " + jnlpReader.getIconPath());
 				writer.println();
 			}
 			if (isParameterUsed(ui_progress)) {
@@ -378,6 +388,11 @@ public class GetDownTxt extends AbstractMojo {
 		File appDir = new File(appdir,"extras");
 		makeDirectoryIfNecessary(appDir);
 		PrintWriter writer = new PrintWriter(new File(appDir, "extras.txt"), "UTF-8");
+		
+		
+		
+		
+		
 		writer.println("-Xms" + jnlpReader.getInitialHeapSize());
 		writer.println("-Xmx" + jnlpReader.getMaxHeapSize());
 		writer.close();
