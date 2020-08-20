@@ -342,7 +342,7 @@ public class GetDownTxt extends AbstractMojo {
 				writer.println("java_min_version = " + java_min_version);
 				writer.println();
 			}
-			if ((null!=  java_exact_version_required ) && (java_exact_version_required.toString().toLowerCase().equals(true))) {
+			if ((null!=  java_exact_version_required ) && (java_exact_version_required.toString().toLowerCase().equals("true"))) {
 				writer.println("# minimum Java Version requested");
 				writer.println("java_exact_version_required = true");
 				writer.println();
