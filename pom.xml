@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>info.margreiter.getdown</groupId>
 	<artifactId>webstart2getdown-maven-plugin</artifactId>
-	<version>1.21.1</version>
+	<version>1.21.2</version>
 	<name>webstart2getdown Maven Plugin</name>
 	<url>https://github.com/thomasX/webstart2getdown-maven-plugin</url>
 	<packaging>maven-plugin</packaging>
@@ -25,8 +25,8 @@
 
 	<scm>
 		<url>https://github.com/thomasX/getdown-maven-plugin</url>
-		<connection>scm:git:git@github.com/thomasX/webstart2getdown-maven-plugin.git</connection>
-		<developerConnection>scm:git:git@github.com:thomasX/webstart2getdown-maven-plugin.git</developerConnection>
+		<connection>scm:git:https://github.com/thomasX/webstart2getdown-maven-plugin.git</connection>
+		<developerConnection>scm:git:https://github.com:thomasX/webstart2getdown-maven-plugin.git</developerConnection>
 	</scm>
 
 	<description>A maven build plugin for generating a complete getdown stub based on a webstart-project</description>
@@ -42,13 +42,18 @@
 		</developer>
 	</developers>
 
-	<distributionManagement>
-		<repository>
-			<id>internal.repo</id>
-			<url>file://${project.build.directory}/gh-pages</url>
-		</repository>
-	</distributionManagement>
 
+	 <distributionManagement>
+	    <site>
+	      <id>github-webstart2getdown</id>
+	      <url>scm:git:https://github.com/thomasX/webstart2getdown-maven-plugin.git</url>
+	    </site>
+	    <repository>
+				<id>github</id>
+				<name>Github Packages</name>			
+				<url>https://maven.pkg.github.com/thomasX/webstart2getdown-maven-plugin</url>
+		</repository>
+	  </distributionManagement>
 	<dependencies>
 		<dependency>
 			<groupId>org.apache.maven</groupId>
